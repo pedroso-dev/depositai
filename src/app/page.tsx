@@ -58,7 +58,7 @@ export default function Home() {
   };
 
   if (!isLoaded) {
-    return <div className="min-h-screen bg-gray-900"></div>; // Ou um componente de "Carregando..."
+    return <div className="min-h-screen bg-gray-900"></div>;
   }
   if (!challenge) {
     return <ChallengeSetup onStartChallenge={handleStartChallenge} />;

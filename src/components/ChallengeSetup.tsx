@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-// Função auxiliar para formatar como moeda (R$)
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -17,14 +16,12 @@ type ChallengeSetupProps = {
 export default function ChallengeSetup({
   onStartChallenge,
 }: ChallengeSetupProps) {
-  const [quantity, setQuantity] = useState("100"); // Valor inicial como string
-  const [increment, setIncrement] = useState("1"); // Valor inicial como string
+  const [quantity, setQuantity] = useState("100");
+  const [increment, setIncrement] = useState("1");
 
-  // Converte os valores do formulário (string) para números (number)
   const numQuantity = parseInt(quantity) || 0;
   const numIncrement = parseInt(increment) || 0;
 
-  // Calcula o total com base nos inputs (Soma de Progressão Aritmética)
   const totalGoal =
     (numQuantity / 2) * (2 * numIncrement + (numQuantity - 1) * numIncrement);
 
