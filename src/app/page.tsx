@@ -1,14 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DepositBox from "@/components/DepositBox";
 import ProgressSummary from "@/components/ProgressSummary";
 
 export default function Home() {
   const totalDeposits = 200;
   const deposits = Array.from({ length: totalDeposits }, (_, i) => i + 1);
-  // console.log(deposits);
   const [completedDeposits, setCompletedDeposits] = useState<number[]>([]);
+
+  const storageKey = "depositai-progress";
+  useEffect(() => {
+    const savedData = localStorage.getItem(storageKey);
+    if (savedData) {
+      setCompletedDeposits(JSON.parse(savedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (completedDeposits.length > 0 || localStorage.getItem(storageKey)) {
+      localStorage.setItem(storageKey, JSON.stringify(completedDeposits));
+    }
+  }, [completedDeposits]);
 
   const completedCount = completedDeposits.length;
   const totalSaved = completedDeposits.reduce((sum, value) => sum + value, 0);
