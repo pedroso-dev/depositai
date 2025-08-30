@@ -3,47 +3,84 @@
 import { useState, useEffect } from "react";
 import DepositBox from "@/components/DepositBox";
 import ProgressSummary from "@/components/ProgressSummary";
+import ChallengeSetup from "@/components/ChallengeSetup";
+
+interface Challenge {
+  settings: {
+    quantity: number;
+    increment: number;
+  };
+  completed: number[];
+}
 
 export default function Home() {
-  const totalDeposits = 200;
-  const deposits = Array.from({ length: totalDeposits }, (_, i) => i + 1);
-  const [completedDeposits, setCompletedDeposits] = useState<number[]>([]);
+  const storageKey = "depositai-challenge";
+  const [challenge, setChallenge] = useState<Challenge | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  const storageKey = "depositai-progress";
   useEffect(() => {
     const savedData = localStorage.getItem(storageKey);
     if (savedData) {
-      setCompletedDeposits(JSON.parse(savedData));
+      setChallenge(JSON.parse(savedData));
     }
+    setIsLoaded(true);
   }, []);
 
   useEffect(() => {
-    if (completedDeposits.length > 0 || localStorage.getItem(storageKey)) {
-      localStorage.setItem(storageKey, JSON.stringify(completedDeposits));
+    if (isLoaded) {
+      localStorage.setItem(storageKey, JSON.stringify(challenge));
     }
-  }, [completedDeposits]);
+  }, [challenge, isLoaded]);
 
-  const completedCount = completedDeposits.length;
-  const totalSaved = completedDeposits.reduce((sum, value) => sum + value, 0);
-  const totalGoal = (totalDeposits * (totalDeposits + 1)) / 2;
-  const progressPercentage = totalGoal > 0 ? (totalSaved / totalGoal) * 100 : 0;
+  const handleStartChallenge = (settings: {
+    quantity: number;
+    increment: number;
+  }) => {
+    console.log("Página Home recebeu o chamado para iniciar com:", settings);
+    const newChallenge: Challenge = {
+      settings,
+      completed: [],
+    };
+    setChallenge(newChallenge);
+  };
 
   const handleDepositClick = (value: number) => {
-    if (completedDeposits.includes(value)) {
-      setCompletedDeposits(completedDeposits.filter((item) => item !== value));
-    } else {
-      setCompletedDeposits([...completedDeposits, value]);
-    }
+    if (!challenge) return;
+
+    const newCompleted = challenge.completed.includes(value)
+      ? challenge.completed.filter((item) => item !== value)
+      : [...challenge.completed, value];
+
+    setChallenge({
+      ...challenge,
+      completed: newCompleted,
+    });
   };
+
+  if (!isLoaded) {
+    return <div className="min-h-screen bg-gray-900"></div>; // Ou um componente de "Carregando..."
+  }
+  if (!challenge) {
+    return <ChallengeSetup onStartChallenge={handleStartChallenge} />;
+  }
+
+  const deposits = Array.from(
+    { length: challenge.settings.quantity },
+    (_, i) => (i + 1) * challenge.settings.increment
+  );
+  const completedCount = challenge.completed.length;
+  const totalSaved = challenge.completed.reduce((sum, value) => sum + value, 0);
+  const totalGoal = deposits.reduce((sum, value) => sum + value, 0);
+  const progressPercentage = totalGoal > 0 ? (totalSaved / totalGoal) * 100 : 0;
 
   return (
     <main className="flex min-h-screen flex-col items-center p-4 sm:p-12">
       <h1 className="mb-8 text-4xl font-bold text-white">Depositaí</h1>
-      <p>Seu desafio dos 200 depósitos.</p>
+      <p>Seu desafio de {challenge.settings.quantity} depósitos</p>
 
       <ProgressSummary
         completedCount={completedCount}
-        totalCount={totalDeposits}
+        totalCount={challenge.settings.quantity}
         totalSaved={totalSaved}
         totalGoal={totalGoal}
         progressPercentage={progressPercentage}
@@ -54,7 +91,7 @@ export default function Home() {
           <DepositBox
             key={value}
             value={value}
-            isCompleted={completedDeposits.includes(value)}
+            isCompleted={challenge.completed.includes(value)}
             onClick={handleDepositClick}
           />
         ))}
