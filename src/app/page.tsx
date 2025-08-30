@@ -2,13 +2,18 @@
 
 import { useState } from "react";
 import DepositBox from "@/components/DepositBox";
+import ProgressSummary from "@/components/ProgressSummary";
 
 export default function Home() {
   const totalDeposits = 200;
   const deposits = Array.from({ length: totalDeposits }, (_, i) => i + 1);
   // console.log(deposits);
-
   const [completedDeposits, setCompletedDeposits] = useState<number[]>([]);
+
+  const completedCount = completedDeposits.length;
+  const totalSaved = completedDeposits.reduce((sum, value) => sum + value, 0);
+  const totalGoal = (totalDeposits * (totalDeposits + 1)) / 2;
+  const progressPercentage = totalGoal > 0 ? (totalSaved / totalGoal) * 100 : 0;
 
   const handleDepositClick = (value: number) => {
     if (completedDeposits.includes(value)) {
@@ -21,6 +26,15 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-4 sm:p-12">
       <h1 className="mb-8 text-4xl font-bold text-white">Depositaí</h1>
+      <p>Seu desafio dos 200 depósitos.</p>
+
+      <ProgressSummary
+        completedCount={completedCount}
+        totalCount={totalDeposits}
+        totalSaved={totalSaved}
+        totalGoal={totalGoal}
+        progressPercentage={progressPercentage}
+      />
 
       <div className="flex max-w-4xl flex-wrap justify-center gap-2">
         {deposits.map((value) => (
