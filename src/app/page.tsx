@@ -36,7 +36,7 @@ export default function Home() {
     quantity: number;
     increment: number;
   }) => {
-    console.log("Página Home recebeu o chamado para iniciar com:", settings);
+    // console.log("Página Home recebeu o chamado para iniciar com:", settings);
     const newChallenge: Challenge = {
       settings,
       completed: [],
