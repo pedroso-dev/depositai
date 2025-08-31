@@ -1,16 +1,11 @@
+import { formatCurrency } from "../utils/formatCurrency";
+
 type ProgressSummaryProps = {
   completedCount: number;
   totalCount: number;
   totalSaved: number;
   totalGoal: number;
   progressPercentage: number;
-};
-
-const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(amount);
 };
 
 export default function ProgressSummary({
