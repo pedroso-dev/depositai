@@ -34,3 +34,13 @@ Este projeto foi construído com foco em boas práticas de desenvolvimento, esca
 | **ESLint / Prettier** | Ferramentas para garantir a consistência do código, formatação automática e a adesão a boas práticas.                               |
 | **Git & GitHub** | Para versionamento do código e gerenciamento do projeto (issues, pull requests).                                                        |
 | **Vercel** | Plataforma de deploy e hospedagem contínua otimizada para Next.js, oferecendo um plano gratuito e integração direta com o GitHub. |
+
+### Decisões Arquiteturais
+
+-   **Componentização:** A interface foi dividida em componentes reutilizáveis e de responsabilidade única (`DepositBox`, `ProgressSummary`, `ChallengeSetup`), seguindo os princípios fundamentais do React para um código mais limpo e manutenível.
+
+-   **Gerenciamento de Estado:** Para a escala deste projeto, o uso dos hooks nativos do React (`useState`, `useEffect`) foi a escolha ideal. Eles oferecem uma API simples e poderosa para controlar o estado da UI e os efeitos colaterais, como a persistência de dados, sem a necessidade de bibliotecas externas mais complexas (como Redux ou Zustand).
+
+-   **Renderização Condicional:** A lógica principal da aplicação (`/src/app/page.tsx`) utiliza o estado para decidir qual interface renderizar: a tela de configuração para novos usuários ou a tela do desafio para usuários com um progresso salvo. Um estado de `isLoaded` foi implementado para evitar o "flash" de conteúdo (FOUC) durante a leitura inicial do `localStorage`.
+
+-   **Estilização com Tailwind CSS:** A escolha pelo Tailwind CSS permitiu um desenvolvimento ágil e a co-localização dos estilos junto à estrutura dos componentes, facilitando a manutenção e a criação de um design system consistente.
