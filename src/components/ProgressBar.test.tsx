@@ -1,6 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ProgressSummary from "./ProgressSummary";
-import { formatCurrency } from "@/utils/formatCurrency";
 
 describe("<ProgressSumary />", () => {
   it("should render the summary with partial progress", () => {
