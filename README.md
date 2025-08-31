@@ -21,3 +21,16 @@ O objetivo principal é fornecer uma experiência de usuário limpa e direta, co
 ## 🛠️ Arquitetura e Tecnologias Utilizadas
 
 Este projeto foi construído com foco em boas práticas de desenvolvimento, escalabilidade e uma excelente experiência para o desenvolvedor.
+
+### Tecnologias
+
+| Tecnologia      | Descrição                                                                                                                              |
+| :-------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
+| **Next.js** | Framework React para produção, utilizado com o **App Router** para renderização no servidor, otimização de performance e SEO.              |
+| **React** | Biblioteca principal para a construção da interface de usuário de forma componentizada.                                                  |
+| **TypeScript** | Superset do JavaScript que adiciona tipagem estática, garantindo um código mais robusto, previsível e com menos bugs.                   |
+| **Tailwind CSS**| Framework de CSS utility-first para estilização rápida, consistente e customizável diretamente no JSX.                                  |
+| **React Hooks** | Utilização de `useState` para gerenciamento de estado local e `useEffect` para controle de efeitos colaterais (como a sincronização com `localStorage`). |
+| **ESLint / Prettier** | Ferramentas para garantir a consistência do código, formatação automática e a adesão a boas práticas.                               |
+| **Git & GitHub** | Para versionamento do código e gerenciamento do projeto (issues, pull requests).                                                        |
+| **Vercel** | Plataforma de deploy e hospedagem contínua otimizada para Next.js, oferecendo um plano gratuito e integração direta com o GitHub. |
