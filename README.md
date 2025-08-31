@@ -44,3 +44,31 @@ Este projeto foi construído com foco em boas práticas de desenvolvimento, esca
 -   **Renderização Condicional:** A lógica principal da aplicação (`/src/app/page.tsx`) utiliza o estado para decidir qual interface renderizar: a tela de configuração para novos usuários ou a tela do desafio para usuários com um progresso salvo. Um estado de `isLoaded` foi implementado para evitar o "flash" de conteúdo (FOUC) durante a leitura inicial do `localStorage`.
 
 -   **Estilização com Tailwind CSS:** A escolha pelo Tailwind CSS permitiu um desenvolvimento ágil e a co-localização dos estilos junto à estrutura dos componentes, facilitando a manutenção e a criação de um design system consistente.
+
+## 🚀 Como Executar o Projeto Localmente
+
+Siga os passos abaixo para ter uma cópia do projeto rodando na sua máquina.
+
+**Pré-requisitos:**
+-   Node.js (versão 18.x ou superior)
+-   npm ou yarn
+
+**Instalação:**
+
+1.  Clone o repositório:
+    ```bash
+    git clone https://github.com/pedroso-dev/depositai.git
+    ```
+2.  Navegue até o diretório do projeto:
+    ```bash
+    cd depositai
+    ```
+3.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+4.  Execute o servidor de desenvolvimento:
+    ```bash
+    npm run dev
+    ```
+5.  Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver a aplicação.
