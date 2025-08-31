@@ -6,6 +6,7 @@ type ProgressSummaryProps = {
   totalSaved: number;
   totalGoal: number;
   progressPercentage: number;
+  onReset: () => void;
 };
 
 export default function ProgressSummary({
@@ -14,6 +15,7 @@ export default function ProgressSummary({
   totalSaved,
   totalGoal,
   progressPercentage,
+  onReset,
 }: ProgressSummaryProps) {
   if (progressPercentage > 100) {
     progressPercentage = 100;
@@ -47,6 +49,14 @@ export default function ProgressSummary({
           className="h-4 rounded-full bg-green-500 transition-all duration-300"
           style={{ width: `${progressPercentage}%` }}
         ></div>
+      </div>
+      <div className="mt-6 text-center">
+        <button
+          className="rounded-md bg-red-800 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+          onClick={onReset}
+        >
+          Apagar desafio e recomeçar
+        </button>
       </div>
     </div>
   );

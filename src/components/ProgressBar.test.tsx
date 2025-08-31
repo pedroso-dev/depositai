@@ -7,11 +7,15 @@ describe("<ProgressSumary />", () => {
       completedCount: 25,
       totalCount: 100,
       totalSaved: 1250,
-      totalGoal: 5050, // Soma de 1 a 100
+      totalGoal: 5050,
     };
     const progressPercentage = (props.totalSaved / props.totalGoal) * 100;
     render(
-      <ProgressSummary progressPercentage={progressPercentage} {...props} />
+      <ProgressSummary
+        progressPercentage={progressPercentage}
+        onReset={() => {}}
+        {...props}
+      />
     );
     expect(screen.getByText(/R\$\s*1\.250,00/i)).toBeInTheDocument();
     expect(screen.getByText(/de R\$\s*5\.050,00/i)).toBeInTheDocument();
@@ -37,7 +41,11 @@ describe("<ProgressSumary />", () => {
     };
     const progressPercentage = (props.totalSaved / props.totalGoal) * 100;
     render(
-      <ProgressSummary progressPercentage={progressPercentage} {...props} />
+      <ProgressSummary
+        progressPercentage={progressPercentage}
+        onReset={() => {}}
+        {...props}
+      />
     );
 
     expect(screen.getByText(/R\$\s*0,00/i)).toBeInTheDocument();
@@ -59,7 +67,11 @@ describe("<ProgressSumary />", () => {
     };
     const progressPercentage = (props.totalSaved / props.totalGoal) * 100;
     render(
-      <ProgressSummary progressPercentage={progressPercentage} {...props} />
+      <ProgressSummary
+        progressPercentage={progressPercentage}
+        onReset={() => {}}
+        {...props}
+      />
     );
 
     const totalSavedElement = screen.getByTestId("total-saved");
@@ -84,7 +96,11 @@ describe("<ProgressSumary />", () => {
     };
     const progressPercentage = (props.totalSaved / props.totalGoal) * 100;
     render(
-      <ProgressSummary progressPercentage={progressPercentage} {...props} />
+      <ProgressSummary
+        progressPercentage={progressPercentage}
+        onReset={() => {}}
+        {...props}
+      />
     );
     const progressBarFill = screen.getByRole("progressBar");
     expect(progressBarFill).toHaveAttribute("aria-valuenow", "0");
@@ -100,7 +116,11 @@ describe("<ProgressSumary />", () => {
     };
     const progressPercentage = (props.totalSaved / props.totalGoal) * 100;
     render(
-      <ProgressSummary progressPercentage={progressPercentage} {...props} />
+      <ProgressSummary
+        progressPercentage={progressPercentage}
+        onReset={() => {}}
+        {...props}
+      />
     );
     expect(screen.getByTestId("total-saved")).toHaveTextContent("R$ 150,75");
     expect(screen.getByTestId("total-goal")).toHaveTextContent("de R$ 301,50");
@@ -118,7 +138,11 @@ describe("<ProgressSumary />", () => {
     };
     const progressPercentage = (props.totalSaved / props.totalGoal) * 100;
     render(
-      <ProgressSummary progressPercentage={progressPercentage} {...props} />
+      <ProgressSummary
+        progressPercentage={progressPercentage}
+        onReset={() => {}}
+        {...props}
+      />
     );
 
     expect(screen.getByTestId("total-saved")).toHaveTextContent("R$ 2.000,00");
@@ -143,6 +167,7 @@ describe("<ProgressSumary />", () => {
     const { rerender } = render(
       <ProgressSummary
         progressPercentage={progressPercentageInitial}
+        onReset={() => {}}
         {...initialProps}
       />
     );
@@ -161,6 +186,7 @@ describe("<ProgressSumary />", () => {
     rerender(
       <ProgressSummary
         progressPercentage={progressPercentageUpdated}
+        onReset={() => {}}
         {...updatedProps}
       />
     );
@@ -179,7 +205,11 @@ describe("<ProgressSumary />", () => {
     };
     const progressPercentage = (props.totalSaved / props.totalGoal) * 100;
     const { container } = render(
-      <ProgressSummary progressPercentage={progressPercentage} {...props} />
+      <ProgressSummary
+        progressPercentage={progressPercentage}
+        onReset={() => {}}
+        {...props}
+      />
     );
 
     expect(container).toMatchSnapshot();
