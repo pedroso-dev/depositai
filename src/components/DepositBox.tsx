@@ -1,7 +1,7 @@
 type DepositBoxProps = {
   value: number;
   isCompleted: boolean;
-  onClick: (value: number) => void;
+  onClick?: (value: number) => void;
 };
 
 export default function DepositBox({
@@ -15,12 +15,33 @@ export default function DepositBox({
   const pendingStyle =
     "border-gray-400 bg-gray-700 text-white hover:border-green-400 hover:bg-gray-600";
 
+  const accessibleLabel = `Depósito número ${value}, status: ${
+    isCompleted ? "concluído" : "pendente"
+  }`;
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(value);
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleClick();
+    }
+  };
+
   return (
     <div
       className={`${baseStyle} ${isCompleted ? completedStyle : pendingStyle}`}
-      onClick={() => onClick(value)}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label={accessibleLabel}
     >
-      {value}
+      <span aria-hidden={true}>{value}</span>
     </div>
   );
 }
