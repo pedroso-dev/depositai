@@ -84,3 +84,10 @@ Este projeto tem um grande potencial para novas funcionalidades. Algumas ideias 
 -   [ ] Animações para tornar a interação mais fluida.
 -   [ ] Gráficos para visualizar o progresso de poupança ao longo do tempo.
 -   [ ] Autenticação de usuários para salvar o progresso na nuvem e acessar de múltiplos dispositivos.
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+---
+Feito com ❤️ por **Mateus Pedroso**.
