@@ -56,6 +56,16 @@ export default function Home() {
     });
   };
 
+  const handleResetChallenge = () => {
+    if (
+      window.confirm(
+        "Você tem certeza que deseja apagar seu desafio? Todo o seu progresso será perdido."
+      )
+    ) {
+      setChallenge(null);
+    }
+  };
+
   if (!isLoaded) {
     return <div className="min-h-screen bg-gray-900"></div>;
   }
@@ -83,6 +93,7 @@ export default function Home() {
         totalSaved={totalSaved}
         totalGoal={totalGoal}
         progressPercentage={progressPercentage}
+        onReset={handleResetChallenge}
       />
 
       <div className="flex max-w-4xl flex-wrap justify-center gap-2">
