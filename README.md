@@ -77,13 +77,14 @@ Siga os passos abaixo para ter uma cópia do projeto rodando na sua máquina.
 
 Este projeto tem um grande potencial para novas funcionalidades. Algumas ideias para o futuro incluem:
 
--   [ ] **Implementação de Testes:** Adicionar testes unitários e de integração com Jest e React Testing Library para garantir a robustez e a manutenibilidade do código.
--   [ ] Botão para reiniciar ou apagar um desafio.
 -   [ ] Implementar animação de conclusão para melhorar o feedback visual e celebrar a conquista do usuário.
+-   [ ] Múltiplos desafios simultaneos.
 -   [ ] Múltiplos temas (claro/escuro).
 -   [ ] Animações para tornar a interação mais fluida.
 -   [ ] Gráficos para visualizar o progresso de poupança ao longo do tempo.
 -   [ ] Autenticação de usuários para salvar o progresso na nuvem e acessar de múltiplos dispositivos.
+-   [X] **Implementação de Testes:** Adicionar testes unitários e de integração com Jest e React Testing Library para garantir a robustez e a manutenibilidade do código.
+-   [X] Botão para reiniciar ou apagar um desafio.
 
 ## 📄 Licença
 
